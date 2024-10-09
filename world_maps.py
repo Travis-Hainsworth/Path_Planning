@@ -63,6 +63,7 @@ def small_map_1():
     
     # ---------------------------- Define the Walls ----------------------------- #
     wall_loc = [(4,i) for i in range(3,6)]
+    world.wall_list = wall_loc
     for wall in wall_loc:
         pygame.draw.rect(screen, (0,0,0), (wall[1]*world.pixel_width, wall[0]*world.pixel_height, world.pixel_width, world.pixel_height))
         world.grid[wall[0]][wall[1]].wall = True
@@ -109,6 +110,7 @@ def small_map_2():
     wall_loc_1 = [(6,i) for i in range(6,16)]
     wall_loc_2 = [(i,6) for i in range(6,16)]
     wall_loc = wall_loc_1 + wall_loc_2
+    world.wall_list = wall_loc
     for wall in wall_loc:
         pygame.draw.rect(screen, (0,0,0), (wall[1]*world.pixel_width, wall[0]*world.pixel_height, world.pixel_width, world.pixel_height))
         world.grid[wall[0]][wall[1]].wall = True
@@ -158,6 +160,7 @@ def big_map_1():
     wall_loc_4 = [(120,i) for i in range(80,90)]
     wall_loc_5 = [(120,i) for i in range(110,121)]
     wall_loc = wall_loc_1 + wall_loc_2 + wall_loc_3 + wall_loc_4 + wall_loc_5
+    world.wall_list = wall_loc
     for wall in wall_loc:
         pygame.draw.rect(screen, (0,0,0), (wall[1]*world.pixel_width, wall[0]*world.pixel_height, world.pixel_width, world.pixel_height))
         world.grid[wall[0]][wall[1]].wall = True
@@ -214,6 +217,7 @@ def big_map_2(gap_size = 20):
     wall_loc_1 = [(i,j) for i in range(thic_1, thic_2) for j in range(0, gap_start)]
     wall_loc_2 = [(i,j) for i in range(thic_1, thic_2) for j in range(gap_end, 200)]
     wall_loc = wall_loc_1 + wall_loc_2
+    world.wall_list = wall_loc
     for wall in wall_loc:
         pygame.draw.rect(screen, (0,0,0), (wall[1]*world.pixel_width, wall[0]*world.pixel_height, world.pixel_width, world.pixel_height))
         world.grid[wall[0]][wall[1]].wall = True

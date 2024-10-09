@@ -49,6 +49,11 @@ class world_class:
         self.pixel_height = screen_size[0]//world_height
         self.pixel_width = screen_size[1]//world_width
 
+        # Store a list of wall locations. This is redundant info shared with each node's wall boolean
+        # However, it is nice to have a concise list of walls for various checks that doesn't
+        # require analyzing each node
+        self.wall_list = []
+
     # Here we will fill in the node's list of neighbors based on the neighbors touching each node
     def compile_neighbors(self):
         for row in self.grid:
@@ -85,3 +90,4 @@ class world_class:
         pygame.draw.rect(screen, wall_color, (node_col*self.pixel_width, node_row*self.pixel_height, self.pixel_width, self.pixel_height))
         pygame.display.flip()
         self.grid[node_row][node_col].wall = True
+        self.wall_list.append((node_row, node_col))

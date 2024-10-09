@@ -86,3 +86,40 @@ def update_RRT_graph(new_node, closest_node, world, screen):
     pygame.draw.line(screen, color, closest_position, new_position)
 
     pygame.display.flip()
+
+
+def remove_RRT_graph(node_1, node_2, world, screen):
+    color = (255, 255, 255)
+    # Draw a white line between the two nodes
+    pixel_1 = (node_1.position[1] * world.pixel_height, node_1.position[0] * world.pixel_width)
+    pixel_2 = (node_2.position[1] * world.pixel_height, node_2.position[0] * world.pixel_width)
+    
+    pygame.draw.line(screen, color, pixel_1, pixel_2)
+
+    pygame.display.flip()
+
+def update_entire_rrt_screen(explored_nodes, world, screen):
+    screen.fill((255, 255, 255))
+
+    # Add start and goal
+    pygame.draw.rect(screen, (0, 255, 0), (world.start[1]*world.pixel_width, world.start[0]*world.pixel_height, world.pixel_width*2, world.pixel_height*2))
+    pygame.draw.rect(screen, (255, 0, 0), (world.goal[1]*world.pixel_width, world.goal[0]*world.pixel_height, world.pixel_width*2, world.pixel_height*2))
+
+    # Add walls
+    for wall in world.wall_list:
+        pygame.draw.rect(screen, (0, 0, 0), (wall[1]*world.pixel_width, wall[0]*world.pixel_height, world.pixel_width, world.pixel_height))
+
+    # Add tree
+    for node in explored_nodes:
+        if node.position != world.start:
+            node_pixel = (node.position[1] * world.pixel_height, node.position[0] * world.pixel_width)
+            pygame.draw.circle(screen, (0, 0, 0), node_pixel, 2)
+
+            node_parent_pixel = (node.previous.position[1] * world.pixel_height, node.previous.position[0] * world.pixel_width)
+            pygame.draw.circle(screen, (0, 0, 0), node_parent_pixel, 2)
+
+            pygame.draw.line(screen, (0,0,0), node_pixel, node_parent_pixel)
+
+    
+    pygame.display.flip()
+    
